@@ -36,6 +36,20 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 ErrorDocument 404 /404.html
 ErrorDocument 500 /500.html
 
+# Reglas para manejar URLs inexistentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/index\.html$
+RewriteCond %{REQUEST_URI} !^/404\.html$
+RewriteCond %{REQUEST_URI} !^/blog/index\.html$
+RewriteCond %{REQUEST_URI} !^/blog/blog_entries/
+RewriteCond %{REQUEST_URI} !^/servicios/index\.html$
+RewriteCond %{REQUEST_URI} !^/contacto/index\.html$
+RewriteCond %{REQUEST_URI} !^/assets/
+RewriteCond %{REQUEST_URI} !^/css/
+RewriteCond %{REQUEST_URI} !^/js/
+RewriteRule ^(.*)$ /404.html [L]
+
 # Prevenir listado de directorios
 Options -Indexes
 
