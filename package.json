@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "netlify dev",
-    "build": "netlify build"
+    "build": "netlify build",
+    "stackbit": "stackbit dev",
+    "stackbit-build": "stackbit build"
   },
   "dependencies": {
     "netlify-cms-app": "^2.15.72",
