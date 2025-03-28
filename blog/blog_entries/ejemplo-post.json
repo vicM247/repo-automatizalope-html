@@ -1,0 +1,13 @@
+{
+  "title": "Ejemplo de Post",
+  "slug": "ejemplo-post",
+  "date": "2024-03-28T12:00:00.000Z",
+  "thumbnail": "/blog/assets/images/ejemplo-thumbnail.jpg",
+  "description": "Este es un ejemplo de cómo se estructura un post en el blog.",
+  "body": "# Título del Post\n\nEste es un ejemplo de contenido en Markdown.\n\n## Subtítulo\n\nPuedes escribir contenido usando **negrita**, *cursiva* y otros elementos de Markdown.\n\n- Lista de elementos\n- Otro elemento\n- Y otro más\n\n1. Lista numerada\n2. Segundo elemento\n3. Tercer elemento",
+  "tags": ["ejemplo", "blog", "markdown"],
+  "author": "Admin",
+  "featured": false,
+  "readingTime": 5,
+  "category": "Tecnología"
+} 

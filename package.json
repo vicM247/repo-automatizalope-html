@@ -1,0 +1,19 @@
+{
+  "name": "automatizalope",
+  "version": "1.0.0",
+  "description": "CMS para el blog de Automatizalo.pe",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "netlify build"
+  },
+  "dependencies": {
+    "netlify-cms-app": "^2.15.72",
+    "netlify-identity-widget": "^1.9.2"
+  },
+  "devDependencies": {
+    "@stackbit/cms-git": "^1.0.35",
+    "@stackbit/types": "^2.1.14",
+    "netlify-cli": "^17.0.0"
+  }
+}

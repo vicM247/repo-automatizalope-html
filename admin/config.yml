@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: '[skip ci] Upload "{{path}}"'
+    deleteMedia: '[skip ci] Delete "{{path}}"'
+
+# Configuración de medios
+media_folder: "blog/assets/images"
+public_folder: "/blog/assets/images"
+
+# Colecciones
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "blog/blog_entries"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Fecha de Publicación", name: "date", widget: "datetime" }
+      - { label: "Imagen Destacada", name: "thumbnail", widget: "image", required: false }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Cuerpo", name: "body", widget: "markdown" }
+      - { label: "Etiquetas", name: "tags", widget: "list", required: false }
+      - { label: "Autor", name: "author", widget: "string", required: false }
+      - { label: "Destacado", name: "featured", widget: "boolean", default: false }
+      - { label: "Tiempo de Lectura", name: "readingTime", widget: "number", required: false }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - "Automatización"
+          - "IA"
+          - "Tecnología"
+          - "Negocios"
+          - "Otros"
+        required: true 

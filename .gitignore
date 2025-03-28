@@ -56,4 +56,10 @@ config.local.php
 # Archivos de caché de navegador
 .cache/
 .temp/
-.tmp/ 
+.tmp/
+
+# Archivos específicos del CMS
+.netlify/
+.netlify/state.json
+.netlify/edge-functions/
+.netlify/edge-functions-manifest.json 
