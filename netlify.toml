@@ -10,6 +10,10 @@
   NODE_VERSION = "18"
   NPM_VERSION = "9"
 
+[visual_editor]
+  working_branch = "preview"
+  content_publishing_branch = "main"
+
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"

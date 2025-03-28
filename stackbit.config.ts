@@ -1,4 +1,4 @@
-import { defineStackbitConfig } from "@stackbit/types";
+import { defineStackbitConfig, SiteMapEntry } from "@stackbit/types";
 import { GitContentSource } from "@stackbit/cms-git";
 
 export default defineStackbitConfig({
@@ -6,8 +6,19 @@ export default defineStackbitConfig({
   contentSources: [
     new GitContentSource({
       rootPath: __dirname,
-      contentDirs: ["blog/blog_entries"],
+      contentDirs: ["content", "blog/blog_entries"],
       models: [
+        {
+          name: "Page",
+          type: "page",
+          urlPath: "/{slug}",
+          filePath: "content/pages/{slug}.json",
+          fields: [
+            { name: "title", type: "string", required: true },
+            { name: "slug", type: "string", required: true },
+            { name: "content", type: "markdown", required: true }
+          ]
+        },
         {
           name: "BlogPost",
           type: "page",
@@ -20,7 +31,12 @@ export default defineStackbitConfig({
             { name: "thumbnail", type: "image", required: false },
             { name: "description", type: "text", required: true },
             { name: "body", type: "markdown", required: true },
-            { name: "tags", type: "list", required: false },
+            { 
+              name: "tags", 
+              type: "list", 
+              required: false,
+              items: { type: "string" }
+            },
             { name: "author", type: "string", required: false },
             { name: "featured", type: "boolean", default: false },
             { name: "readingTime", type: "number", required: false },
@@ -35,5 +51,23 @@ export default defineStackbitConfig({
         publicPath: "/blog/assets"
       }
     })
-  ]
+  ],
+  siteMap: ({ documents, models }) => {
+    const pageModels = models.filter((m) => m.type === "page");
+
+    return documents
+      .filter((d) => pageModels.some(m => m.name === d.modelName))
+      .map((document) => {
+        const urlModel = document.modelName === 'Page' ? 'pages' : 'blog';
+        const documentData = document.data as { slug?: string };
+        
+        return {
+          stableId: document.id,
+          urlPath: `/${urlModel}/${documentData.slug || document.id}`,
+          document,
+          isHomePage: documentData.slug === 'index'
+        };
+      })
+      .filter(Boolean) as SiteMapEntry[];
+  }
 }); 
